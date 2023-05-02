@@ -59,17 +59,17 @@ export const BeerDetails: React.FC<BeerDetailsProps> = ({ route }) => {
         if (minimumMaximum.includes(key)) {
           if (key === 'colour') {
             return (
-              <>
+              <View>
                 <List.Item key={index} title={capitalizeWords(key)} />
                 <SRMGradient
                   srmValue1={value.minimum}
                   srmValue2={value.maximum}
                 />
-              </>
+              </View>
             );
           }
           return (
-            <>
+            <View>
               <List.Item title={capitalizeWords(`${key} Minimum`)} />
               <View style={styles.spacing}>
                 <Paragraph>{value.minimum}</Paragraph>
@@ -78,23 +78,23 @@ export const BeerDetails: React.FC<BeerDetailsProps> = ({ route }) => {
               <View style={styles.spacing}>
                 <Paragraph>{value.maximum}</Paragraph>
               </View>
-            </>
+            </View>
           );
         } else if (key == 'tags') {
           return (
-            <>
+            <View>
               <List.Item key={index} title={capitalizeWords(key)} />
               <View style={styles.tags}>{chipSplit(value)}</View>
-            </>
+            </View>
           );
         } else {
           return (
-            <>
+            <View>
               <List.Item key={index} title={capitalizeWords(key)} />
               <View style={styles.spacing}>
                 <Paragraph>{value}</Paragraph>
               </View>
-            </>
+            </View>
           );
         }
       })}

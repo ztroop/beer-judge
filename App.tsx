@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { BeerList } from './components/BeerList';
-import { BeerDetails } from './components/BeerDetails';
 import beersData from './assets/beers.json';
 import { Beer, RootStackParamList } from './types';
+import BeerListScreen from './screens/BeerListScreen';
+import BeerDetailsScreen from './screens/BeerDetailScreen';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -21,11 +21,11 @@ const App = () => {
         <Stack.Screen
           name="BeerList"
           options={{ title: 'Beers' }}
-          children={(props) => <BeerList {...props} beers={beers} />}
+          children={(props) => <BeerListScreen {...props} beers={beers} />}
         />
         <Stack.Screen
           name="BeerDetails"
-          component={BeerDetails}
+          component={BeerDetailsScreen}
           options={({ route }) => ({ title: route.params.beer.name })}
         />
       </Stack.Navigator>

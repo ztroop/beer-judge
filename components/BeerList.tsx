@@ -32,7 +32,7 @@ export const BeerList: React.FC<BeerListProps> = ({ beers, navigation }) => {
     if (selectedBeer) {
       onBeerSelect(selectedBeer);
     }
-    setValue(item.value);
+    setValue(null);
   };
 
   return (
