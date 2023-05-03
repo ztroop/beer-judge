@@ -6,7 +6,7 @@ import { RouteProp } from '@react-navigation/native';
 import SRMGradient from './SRMGradient';
 
 type BeerDetailsProps = {
-  route: RouteProp<RootStackParamList, 'BeerDetails'>;
+  route: RouteProp<RootStackParamList, 'DetailsPage'>;
 };
 
 // Array of fields that have minimum and maximum objects

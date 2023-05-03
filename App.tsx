@@ -3,8 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import beersData from './assets/beers.json';
 import { Beer, RootStackParamList } from './types';
-import BeerListScreen from './screens/BeerListScreen';
-import BeerDetailsScreen from './screens/BeerDetailScreen';
+import MainPage from './screens/MainPage';
+import DetailsPage from './screens/DetailsPage';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -17,15 +17,15 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="BeerList">
+      <Stack.Navigator initialRouteName="MainPage">
         <Stack.Screen
-          name="BeerList"
+          name="MainPage"
           options={{ title: 'Beers' }}
-          children={(props) => <BeerListScreen {...props} beers={beers} />}
+          children={(props) => <MainPage {...props} beers={beers} />}
         />
         <Stack.Screen
-          name="BeerDetails"
-          component={BeerDetailsScreen}
+          name="DetailsPage"
+          component={DetailsPage}
           options={({ route }) => ({ title: route.params.beer.name })}
         />
       </Stack.Navigator>

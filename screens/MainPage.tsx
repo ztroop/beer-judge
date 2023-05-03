@@ -5,15 +5,12 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet, View, Image } from 'react-native';
 import { Paragraph } from 'react-native-paper';
 
-type BeerListScreenProps = {
+type MainPageProps = {
   beers: Beer[];
-  navigation: StackNavigationProp<RootStackParamList, 'BeerList'>;
+  navigation: StackNavigationProp<RootStackParamList, 'MainPage'>;
 };
 
-const BeerListScreen: React.FC<BeerListScreenProps> = ({
-  beers,
-  navigation,
-}) => {
+const MainPage: React.FC<MainPageProps> = ({ beers, navigation }) => {
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require('../assets/logo.png')} />
@@ -46,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BeerListScreen;
+export default MainPage;

@@ -6,7 +6,7 @@ import { Dropdown } from 'react-native-element-dropdown';
 
 type BeerListProps = {
   beers: Beer[];
-  navigation: StackNavigationProp<RootStackParamList, 'BeerList'>;
+  navigation: StackNavigationProp<RootStackParamList, 'MainPage'>;
 };
 
 /**
@@ -18,7 +18,7 @@ export const BeerList: React.FC<BeerListProps> = ({ beers, navigation }) => {
   const [value, setValue] = useState(null);
 
   const onBeerSelect = (beer: Beer) => {
-    navigation.navigate('BeerDetails', { beer });
+    navigation.navigate('DetailsPage', { beer });
   };
 
   const dropdownBeers = beers.map((beer) => ({
