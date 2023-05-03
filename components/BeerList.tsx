@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { Beer, RootStackParamList } from '../types';
-import { StyleSheet } from 'react-native';
 import { Dropdown } from 'react-native-element-dropdown';
+import { beerListStyle } from '../styles';
 
 type BeerListProps = {
   beers: Beer[];
@@ -45,30 +45,10 @@ export const BeerList: React.FC<BeerListProps> = ({ beers, navigation }) => {
       placeholder="Select a beer..."
       value={value}
       onChange={onChangeDropdown}
-      style={styles.dropdown}
-      placeholderStyle={styles.placeholderStyle}
-      selectedTextStyle={styles.selectedTextStyle}
-      inputSearchStyle={styles.inputSearchStyle}
+      style={beerListStyle.dropdown}
+      placeholderStyle={beerListStyle.placeholderStyle}
+      selectedTextStyle={beerListStyle.selectedTextStyle}
+      inputSearchStyle={beerListStyle.inputSearchStyle}
     />
   );
 };
-
-const styles = StyleSheet.create({
-  dropdown: {
-    height: 50,
-    borderColor: 'gray',
-    borderWidth: 0.5,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-  },
-  placeholderStyle: {
-    fontSize: 16,
-  },
-  selectedTextStyle: {
-    fontSize: 16,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
-  },
-});

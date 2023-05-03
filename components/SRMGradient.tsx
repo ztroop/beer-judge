@@ -1,14 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
+import { gradientStyle } from '../styles';
 
-const interpolateColor = (color1, color2, ratio) => {
+type Color = {
+  r: number;
+  g: number;
+  b: number;
+};
+
+const interpolateColor = (
+  color1: Color,
+  color2: Color,
+  ratio: number
+): string => {
   const r = color1.r + (color2.r - color1.r) * ratio;
   const g = color1.g + (color2.g - color1.g) * ratio;
   const b = color1.b + (color2.b - color1.b) * ratio;
   return `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
 };
 
-const srmToRgb = (srm) => {
+const srmToRgb = (srm: number): Color => {
   const r = Math.round(Math.min(255, Math.max(0, 255 * 0.975 ** srm)));
   const g = Math.round(Math.min(255, Math.max(0, 245 * 0.88 ** srm)));
   const b = Math.round(Math.min(255, Math.max(0, 220 * 0.7 ** srm)));
@@ -28,41 +39,20 @@ const GradientRectangle = ({ srmValue1, srmValue2 }) => {
     layers.push(
       <View
         key={i}
-        style={[styles.gradientLayer, { backgroundColor: color }]}
+        testID="gradientLayer"
+        style={[gradientStyle.gradientLayer, { backgroundColor: color }]}
       />
     );
   }
 
   return (
-    <View style={styles.rectangle}>
-      <View style={styles.gradient}>{layers}</View>
-      <Text style={styles.text}>
+    <View style={gradientStyle.rectangle}>
+      <View style={gradientStyle.gradient}>{layers}</View>
+      <Text style={gradientStyle.text}>
         SRM {srmValue1} - SRM {srmValue2}
       </Text>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  rectangle: {
-    height: 100,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'relative',
-  },
-  gradient: {
-    ...StyleSheet.absoluteFillObject,
-    flexDirection: 'row',
-  },
-  gradientLayer: {
-    flex: 1,
-  },
-  text: {
-    color: 'white',
-    fontWeight: 'bold',
-    zIndex: 2,
-  },
-});
 
 export default GradientRectangle;

@@ -1,12 +1,21 @@
 import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { List, Chip, Paragraph } from 'react-native-paper';
 import { RootStackParamList } from '../types';
 import { RouteProp } from '@react-navigation/native';
 import SRMGradient from './SRMGradient';
+import { beerDetailStyle } from '../styles';
+import ArrowSlider from './ArrowSlider';
 
 type BeerDetailsProps = {
   route: RouteProp<RootStackParamList, 'DetailsPage'>;
+};
+
+const startEnding = {
+  international_bitterness_units: [0, 100],
+  original_gravity: [1.0, 1.15],
+  final_gravity: [0.98, 1.05],
+  alcohol_by_volume: [0.0, 10.0],
 };
 
 // Array of fields that have minimum and maximum objects
@@ -40,7 +49,7 @@ const capitalizeWords = (input: string): string => {
  */
 const chipSplit = (input: string, parentIndex: number) => {
   return input.split(',').map((word, index) => (
-    <Chip compact style={styles.chip} key={`${parentIndex}-${index}`}>
+    <Chip compact style={beerDetailStyle.chip} key={`${parentIndex}-${index}`}>
       {word}
     </Chip>
   ));
@@ -71,12 +80,20 @@ export const BeerDetails: React.FC<BeerDetailsProps> = ({ route }) => {
           return (
             <View key={`${index}-minmax`}>
               <List.Item title={capitalizeWords(`${key} Minimum`)} />
-              <View style={styles.spacing}>
-                <Paragraph>{value.minimum}</Paragraph>
+              <View style={beerDetailStyle.spacing}>
+                <ArrowSlider
+                  start={startEnding[key][0]}
+                  end={startEnding[key][1]}
+                  arrowPosition={value.minimum}
+                />
               </View>
               <List.Item title={capitalizeWords(`${key} Maximum`)} />
-              <View style={styles.spacing}>
-                <Paragraph>{value.maximum}</Paragraph>
+              <View style={beerDetailStyle.spacing}>
+                <ArrowSlider
+                  start={startEnding[key][0]}
+                  end={startEnding[key][1]}
+                  arrowPosition={value.maximum}
+                />
               </View>
             </View>
           );
@@ -84,14 +101,31 @@ export const BeerDetails: React.FC<BeerDetailsProps> = ({ route }) => {
           return (
             <View key={`${index}-tags`}>
               <List.Item title={capitalizeWords(key)} />
-              <View style={styles.tags}>{chipSplit(value, index)}</View>
+              <View style={beerDetailStyle.tags}>
+                {chipSplit(value, index)}
+              </View>
+            </View>
+          );
+        } else if (key == 'category') {
+          return (
+            <View key={`${index}-category`}>
+              <List.Item title={capitalizeWords(key)} />
+              <Chip
+                compact
+                style={{
+                  backgroundColor: 'gainsboro',
+                  marginHorizontal: 30,
+                }}
+              >
+                {value}
+              </Chip>
             </View>
           );
         } else {
           return (
             <View key={`${index}-other`}>
               <List.Item title={capitalizeWords(key)} />
-              <View style={styles.spacing}>
+              <View style={beerDetailStyle.spacing}>
                 <Paragraph>{value}</Paragraph>
               </View>
             </View>
@@ -101,23 +135,3 @@ export const BeerDetails: React.FC<BeerDetailsProps> = ({ route }) => {
     </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  spacing: {
-    paddingLeft: 30,
-    paddingRight: 30,
-  },
-  tags: {
-    display: 'flex',
-    flex: 1,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    paddingLeft: 20,
-    paddingRight: 20,
-    paddingBottom: 20,
-  },
-  chip: {
-    margin: 6,
-    backgroundColor: 'gainsboro',
-  },
-});

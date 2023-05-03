@@ -32,4 +32,5 @@ export interface Beer {
 export type RootStackParamList = {
     MainPage: undefined;
     DetailsPage: { beer: Beer };
+    TagsPage: { beers: Beer[] };
 };

@@ -5,6 +5,7 @@ import beersData from './assets/beers.json';
 import { Beer, RootStackParamList } from './types';
 import MainPage from './screens/MainPage';
 import DetailsPage from './screens/DetailsPage';
+import TagsPage from './screens/TagsPage';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -27,6 +28,11 @@ const App = () => {
           name="DetailsPage"
           component={DetailsPage}
           options={({ route }) => ({ title: route.params.beer.name })}
+        />
+        <Stack.Screen
+          name="TagsPage"
+          component={TagsPage}
+          options={() => ({ title: 'Tags' })}
         />
       </Stack.Navigator>
     </NavigationContainer>
