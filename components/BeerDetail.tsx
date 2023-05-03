@@ -38,9 +38,9 @@ const capitalizeWords = (input: string): string => {
  * @param input - A string containing comma-separated words.
  * @returns An array of Chip components with each word from the input string as its content.
  */
-const chipSplit = (input: string) => {
-  return input.split(',').map((word) => (
-    <Chip compact style={styles.chip}>
+const chipSplit = (input: string, parentIndex: number) => {
+  return input.split(',').map((word, index) => (
+    <Chip compact style={styles.chip} key={`${parentIndex}-${index}`}>
       {word}
     </Chip>
   ));
@@ -59,8 +59,8 @@ export const BeerDetails: React.FC<BeerDetailsProps> = ({ route }) => {
         if (minimumMaximum.includes(key)) {
           if (key === 'colour') {
             return (
-              <View>
-                <List.Item key={index} title={capitalizeWords(key)} />
+              <View key={`${index}-colour`}>
+                <List.Item title={capitalizeWords(key)} />
                 <SRMGradient
                   srmValue1={value.minimum}
                   srmValue2={value.maximum}
@@ -69,7 +69,7 @@ export const BeerDetails: React.FC<BeerDetailsProps> = ({ route }) => {
             );
           }
           return (
-            <View>
+            <View key={`${index}-minmax`}>
               <List.Item title={capitalizeWords(`${key} Minimum`)} />
               <View style={styles.spacing}>
                 <Paragraph>{value.minimum}</Paragraph>
@@ -82,15 +82,15 @@ export const BeerDetails: React.FC<BeerDetailsProps> = ({ route }) => {
           );
         } else if (key == 'tags') {
           return (
-            <View>
-              <List.Item key={index} title={capitalizeWords(key)} />
-              <View style={styles.tags}>{chipSplit(value)}</View>
+            <View key={`${index}-tags`}>
+              <List.Item title={capitalizeWords(key)} />
+              <View style={styles.tags}>{chipSplit(value, index)}</View>
             </View>
           );
         } else {
           return (
-            <View>
-              <List.Item key={index} title={capitalizeWords(key)} />
+            <View key={`${index}-other`}>
+              <List.Item title={capitalizeWords(key)} />
               <View style={styles.spacing}>
                 <Paragraph>{value}</Paragraph>
               </View>
