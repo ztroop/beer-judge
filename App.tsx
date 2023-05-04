@@ -6,6 +6,8 @@ import { Beer, RootStackParamList } from './types';
 import MainPage from './screens/MainPage';
 import DetailsPage from './screens/DetailsPage';
 import TagsPage from './screens/TagsPage';
+import FilteredPage from './screens/FilteredPage';
+import CategoryPage from './screens/CategoryPage';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -31,8 +33,18 @@ const App = () => {
         />
         <Stack.Screen
           name="TagsPage"
-          component={TagsPage}
-          options={() => ({ title: 'Tags' })}
+          children={(props) => <TagsPage {...props} beers={beers} />}
+          options={{ title: 'Tags' }}
+        />
+        <Stack.Screen
+          name="CategoryPage"
+          children={(props) => <CategoryPage {...props} beers={beers} />}
+          options={{ title: 'Categories' }}
+        />
+        <Stack.Screen
+          name="FilteredPage"
+          component={FilteredPage}
+          options={{ title: 'Filtered' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

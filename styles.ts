@@ -93,3 +93,7 @@ export const beerDetailStyle = StyleSheet.create({
   },
   chip: mainPageStyle.chip,
 });
+
+export const filteredPageStyle = StyleSheet.create({
+  ...tagsPageStyle,
+});

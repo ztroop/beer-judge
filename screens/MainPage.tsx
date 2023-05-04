@@ -29,14 +29,25 @@ const MainPage: React.FC<MainPageProps> = ({ beers, navigation }) => {
         users in identifying, evaluating, and appreciating diverse beer types.
         Cheers!
       </Paragraph>
-      <View style={mainPageStyle.tags}>
+      <View
+        style={{
+          ...mainPageStyle.tags,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
         <Chip
           style={mainPageStyle.chip}
           onPress={() => navigation.navigate('TagsPage', { beers })}
         >
           Search By Tags
         </Chip>
-        <Chip style={mainPageStyle.chip}>Search By Category</Chip>
+        <Chip
+          style={mainPageStyle.chip}
+          onPress={() => navigation.navigate('CategoryPage', { beers })}
+        >
+          Search By Category
+        </Chip>
       </View>
     </View>
   );

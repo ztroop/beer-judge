@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     paddingHorizontal: 20,
+    maxWidth: 1000,
   },
   label: {
     fontSize: 16,

@@ -1,16 +1,20 @@
 import React from 'react';
-import { RootStackParamList } from '../types';
-import { View } from 'react-native';
-import { RouteProp } from '@react-navigation/native';
+import { Beer, RootStackParamList } from '../types';
+import { ScrollView } from 'react-native';
 import { Chip } from 'react-native-paper';
 import { tagsPageStyle } from '../styles';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type TagsPageProps = {
-  route: RouteProp<RootStackParamList, 'TagsPage'>;
+  beers: Beer[];
+  navigation: StackNavigationProp<RootStackParamList, 'TagsPage'>;
 };
 
-const TagsPage: React.FC<TagsPageProps> = ({ route }) => {
-  let { beers } = route.params;
+const filterByTag = (beers: Beer[], tag: string): Beer[] => {
+  return beers.filter((b) => b.tags.includes(tag));
+};
+
+const TagsPage: React.FC<TagsPageProps> = ({ beers, navigation }) => {
   const beerTags = beers.reduce((acc, curr) => {
     const tags = curr.tags
       .split(',')
@@ -18,17 +22,26 @@ const TagsPage: React.FC<TagsPageProps> = ({ route }) => {
       .filter((tag) => !acc.includes(tag));
     return acc.concat(tags);
   }, []);
+  beerTags.sort();
 
   return (
-    <View style={tagsPageStyle.tags}>
+    <ScrollView style={tagsPageStyle.tags}>
       {beerTags.map((value, index) => {
         return (
-          <Chip key={index} style={tagsPageStyle.chip}>
+          <Chip
+            key={index}
+            style={tagsPageStyle.chip}
+            onPress={() =>
+              navigation.navigate('FilteredPage', {
+                beers: filterByTag(beers, value),
+              })
+            }
+          >
             {value}
           </Chip>
         );
       })}
-    </View>
+    </ScrollView>
   );
 };
 
