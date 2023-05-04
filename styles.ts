@@ -4,9 +4,6 @@ export const tagsPageStyle = StyleSheet.create({
   tags: {
     display: 'flex',
     flex: 1,
-    flexWrap: 'wrap',
-    flexDirection: 'row',
-    padding: 20,
   },
   chip: {
     margin: 6,

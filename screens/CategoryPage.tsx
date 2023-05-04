@@ -1,6 +1,6 @@
 import React from 'react';
 import { Beer, RootStackParamList } from '../types';
-import { ScrollView } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { Chip } from 'react-native-paper';
 import { tagsPageStyle } from '../styles';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -30,21 +30,23 @@ const CategoryPage: React.FC<CategoryPageProps> = ({ beers, navigation }) => {
 
   return (
     <ScrollView style={tagsPageStyle.tags}>
-      {beerCategories.map((value, index) => {
-        return (
-          <Chip
-            key={index}
-            style={tagsPageStyle.chip}
-            onPress={() =>
-              navigation.navigate('FilteredPage', {
-                beers: filterByCategory(beers, value),
-              })
-            }
-          >
-            {value}
-          </Chip>
-        );
-      })}
+      <View style={{ padding: 20 }}>
+        {beerCategories.map((value, index) => {
+          return (
+            <Chip
+              key={index}
+              style={tagsPageStyle.chip}
+              onPress={() =>
+                navigation.navigate('FilteredPage', {
+                  beers: filterByCategory(beers, value),
+                })
+              }
+            >
+              {value}
+            </Chip>
+          );
+        })}
+      </View>
     </ScrollView>
   );
 };
