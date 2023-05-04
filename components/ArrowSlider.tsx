@@ -21,7 +21,7 @@ const ArrowSlider: React.FC<ArrowSliderProps> = ({
   arrowPosition,
 }) => {
   const screenWidth = Dimensions.get('window').width;
-  const sliderWidth = screenWidth * 0.8 - 50;
+  const sliderWidth = screenWidth * 0.8;
   const arrowWidth = 10;
   const padding = 20;
 
@@ -40,7 +40,14 @@ const ArrowSlider: React.FC<ArrowSliderProps> = ({
   return (
     <View style={styles.container}>
       <RNText style={styles.label}>{start}</RNText>
-      <Svg height="50" width={sliderWidth} style={styles.slider}>
+      <Svg
+        height="50"
+        width={sliderWidth}
+        style={styles.slider}
+        accessible={true}
+        accessibilityLabel={`Arrow position: ${arrowPosition}`}
+        testID="arrowPositionLabel"
+      >
         <Line
           x1={padding}
           y1="35"
@@ -50,22 +57,16 @@ const ArrowSlider: React.FC<ArrowSliderProps> = ({
           strokeWidth="2"
         />
         <G>
-          <View
-            accessible={true}
-            accessibilityLabel={`Arrow position: ${arrowPosition}`}
-            testID="arrowPositionLabel"
+          <Text
+            x={arrowX}
+            y="20"
+            fontSize="16"
+            fontWeight="bold"
+            textAnchor="middle"
+            fill="black"
           >
-            <Text
-              x={arrowX}
-              y="20"
-              fontSize="16"
-              fontWeight="bold"
-              textAnchor="middle"
-              fill="black"
-            >
-              {arrowPosition}
-            </Text>
-          </View>
+            {arrowPosition}
+          </Text>
           <Polygon
             points={`${arrowX},${arrowWidth / 2 + 25} ${
               arrowX - arrowWidth
@@ -86,7 +87,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: '100%',
     paddingHorizontal: 20,
-    maxWidth: 1000,
   },
   label: {
     fontSize: 16,
@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
   },
   slider: {
     flex: 1,
-    alignItems: 'center',
   },
 });
 
