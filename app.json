@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Beer Judge",
-    "slug": "beer-judge-app",
+    "name": "Simple Beer Judge",
+    "slug": "simple-beer-judge",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
