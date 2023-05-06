@@ -1,3 +1,5 @@
+[![React Native CI](https://github.com/ztroop/simple-beer-judge/actions/workflows/native.js.yml/badge.svg)](https://github.com/ztroop/simple-beer-judge/actions/workflows/native.js.yml)
+
 # Simple Beer Judge
 
 The Simple Beer Judge is a user-friendly mobile application designed to
