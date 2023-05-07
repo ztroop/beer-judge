@@ -4,27 +4,22 @@
     "slug": "simple-beer-judge",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/android.png",
     "userInterfaceStyle": "light",
     "assetBundlePatterns": ["**/*"],
-    "splash": {
-      "image": "./assets/icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#FFFFFF"
-    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.ztroop.beerjudgeapp"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/android.png",
+        "backgroundColor": "#ff9800"
       },
       "package": "com.ztroop.beerjudgeapp"
     },
     "web": {
-      "favicon": "./assets/icon.png"
+      "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
