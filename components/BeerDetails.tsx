@@ -13,8 +13,8 @@ type BeerDetailsProps = {
 
 const startEnding = {
   international_bitterness_units: [0, 100],
-  original_gravity: [1.0, 1.15],
-  final_gravity: [0.98, 1.05],
+  original_gravity: [1.0, 1.2],
+  final_gravity: [0.9, 1.1],
   alcohol_by_volume: [0.0, 10.0],
 };
 

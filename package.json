@@ -1,10 +1,12 @@
 {
   "name": "simple-beer-judge",
   "version": "1.0.0",
+  "author": "Zackary Troop",
+  "license": "MIT",
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
-    "lrelease": "expo run:android --variant release",
+    "release": "expo run:android --variant release",
     "ios": "expo run:ios",
     "web": "expo start --web",
     "test": "jest"

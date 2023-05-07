@@ -16,8 +16,8 @@
     "production": {
       "android": {
         "buildType": "apk"
-      } 
-      ,"env": {
+      },
+      "env": {
         "FLIPPER_DISABLE": "1"
       }
     }

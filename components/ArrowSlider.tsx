@@ -3,11 +3,8 @@ import { View, Text as RNText, StyleSheet, Dimensions } from 'react-native';
 import Svg, { Line, Polygon, Text, G } from 'react-native-svg';
 
 interface ArrowSliderProps {
-  /** The starting point of the slider. */
   start: number;
-  /** The ending point of the slider. */
   end: number;
-  /** The position of the arrow on the slider. */
   arrowPosition: number;
 }
 
@@ -39,7 +36,9 @@ const ArrowSlider: React.FC<ArrowSliderProps> = ({
 
   return (
     <View style={styles.container}>
-      <RNText style={styles.label}>{start}</RNText>
+      <View style={styles.labelContainer}>
+        <RNText style={styles.label}>{start}</RNText>
+      </View>
       <Svg
         height="50"
         width={sliderWidth}
@@ -75,7 +74,9 @@ const ArrowSlider: React.FC<ArrowSliderProps> = ({
           />
         </G>
       </Svg>
-      <RNText style={styles.label}>{end}</RNText>
+      <View style={styles.labelContainer}>
+        <RNText style={styles.label}>{end}</RNText>
+      </View>
     </View>
   );
 };
@@ -88,9 +89,11 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 20,
   },
+  labelContainer: {
+    width: 30,
+  },
   label: {
     fontSize: 16,
-    marginHorizontal: 10,
   },
   slider: {
     flex: 1,

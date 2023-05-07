@@ -6,9 +6,12 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
+    "splash": {
+      "image": "./assets/icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.ztroop.beerjudgeapp"
@@ -25,7 +28,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "55d57259-0a42-4a65-9c13-e1d632329bc1"
+        "projectId": "0a190698-de55-4557-8a91-fe778247f875"
       }
     },
     "owner": "ztroop"
