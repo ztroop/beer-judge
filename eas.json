@@ -9,10 +9,18 @@
     },
     "preview": {
       "android": {
-        "buildType": "apk"
+        "buildType": "apk",
+        "image": "latest"
       }
     },
-    "production": {}
+    "production": {
+      "android": {
+        "buildType": "apk"
+      } 
+      ,"env": {
+        "FLIPPER_DISABLE": "1"
+      }
+    }
   },
   "submit": {
     "production": {}
